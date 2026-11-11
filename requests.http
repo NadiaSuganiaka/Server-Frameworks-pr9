@@ -1,0 +1,27 @@
+@base = http://localhost:3001
+### Готовність
+GET {{base}}/health
+### Існуючі користувачі
+GET {{base}}/users
+### Існуючі події
+GET {{base}}/events
+### 201 на чистій парі; при повторі 409
+POST {{base}}/events/1/registrations
+Content-Type: application/json
+
+{"userId":2}
+### 404: немає події
+POST {{base}}/events/9999/registrations
+Content-Type: application/json
+
+{"userId":2}
+### 404: немає користувача
+POST {{base}}/events/1/registrations
+Content-Type: application/json
+
+{"userId":9999}
+### 400: неправильний тип
+POST {{base}}/events/1/registrations
+Content-Type: application/json
+
+{"userId":"2"}

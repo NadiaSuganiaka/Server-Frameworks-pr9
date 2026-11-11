@@ -1,0 +1,123 @@
+{
+  "info": {
+    "name": "CampusHub PR09",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3001"
+    }
+  ],
+  "item": [
+    {
+      "name": "Health 200",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/health"
+      }
+    },
+    {
+      "name": "Users",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/users"
+      }
+    },
+    {
+      "name": "Events",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/events"
+      }
+    },
+    {
+      "name": "Create 201 (fresh pair)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/events/1/registrations",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"userId\": 2}"
+        }
+      }
+    },
+    {
+      "name": "Repeat 409",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/events/1/registrations",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"userId\": 2}"
+        }
+      }
+    },
+    {
+      "name": "Missing event 404",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/events/9999/registrations",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"userId\": 2}"
+        }
+      }
+    },
+    {
+      "name": "Missing user 404",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/events/1/registrations",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"userId\": 9999}"
+        }
+      }
+    },
+    {
+      "name": "Invalid input 400",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "url": "{{baseUrl}}/events/1/registrations",
+        "body": {
+          "mode": "raw",
+          "raw": "{\"userId\": \"2\"}"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "campushub-b-p09-start",
+  "version": "1.0.0",
+  "private": true,
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "node --watch --import tsx src/server.ts",
+    "start": "node --import tsx src/server.ts",
+    "typecheck": "tsc --noEmit",
+    "db:prepare": "prisma generate && prisma migrate deploy && node --import tsx scripts/seed.ts",
+    "db:seed": "node --import tsx scripts/seed.ts",
+    "check": "node --import tsx scripts/check.ts"
+  },
+  "dependencies": {
+    "express": "4.21.2",
+    "@prisma/client": "6.4.1",
+    "dotenv": "16.4.7"
+  },
+  "devDependencies": {
+    "prisma": "6.4.1",
+    "typescript": "5.7.3",
+    "tsx": "4.19.3",
+    "@types/express": "4.17.21",
+    "@types/node": "22.13.10"
+  }
+}
